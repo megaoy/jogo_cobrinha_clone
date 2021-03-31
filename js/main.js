@@ -42,18 +42,25 @@ function cria_comida(){
 }
 
 function iniciar_jogo(){
-
+//loopa no mapa
     if(snake[0].x > 15 * box && direction == "right"){ snake[0].x = 0;}
     if(snake[0].x < 0 && direction == "left"){ snake[0].x = 16 * box;}
     if(snake[0].y > 15 * box && direction == "down"){ snake[0].y = 0;}
     if(snake[0].y < 0 && direction == "up"){ snake[0].y = 16 * box;}
 
+//checa se cobra acertou a si mesma
+    for(i = 1; i < snake.length; i++) {
+        if(snake[0].x == snake[i].x && snake[0].y == snake[i].y) {
+            clearInterval(jogo);
+            alert( 'Game Over!')
+        }
+    }
 
-
+//iccia objetso
     cria_bg();
     cria_cobra();
     cria_comida();
-
+//move cobra
     let snakeX = snake[0].x;
     let snakeY = snake[0].y;
 
@@ -69,7 +76,7 @@ function iniciar_jogo(){
     if(direction == "down"){
         snakeY +=box;
     }
-    
+//faaz cobra crecer se comer
     if(snakeX != comida.x || snakeY != comida.y) {
         snake.pop();
     }
@@ -78,7 +85,7 @@ function iniciar_jogo(){
         comida.x = Math.floor(Math.random() * 15 + 1) * box;
         comida.y = Math.floor(Math.random() * 15 + 1) * box;
     }
-
+//atualiza cabeça
     let newHead = {
         x: snakeX ,
         y: snakeY
