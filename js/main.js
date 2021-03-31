@@ -37,7 +37,7 @@ function cria_cobra(){
 }
 
 function cria_comida(){
-    context.fillStyle ="#2d3436";
+    context.fillStyle ="#ffeaa7";
     context.fillRect(comida.x,comida.y,box,box);
 }
 
